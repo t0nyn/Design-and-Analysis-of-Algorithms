@@ -1,4 +1,6 @@
 import random
+from bubble_sort import bubble_sort
+from insertion_sort import insertion_sort
 
 class NumberListGenerator:
     LOWER_RANDOM_BOUND = 0
@@ -14,7 +16,7 @@ class NumberListGenerator:
 
     @staticmethod
     def generate_reversed_numbers(n: int)->list:
-        return list(range(n+1, 1, -1))
+        return list(range(n, 0, -1))
 
     @staticmethod
     def generate_almost_sorted_numbers(n: int)->list:
@@ -26,4 +28,6 @@ class NumberListGenerator:
 
         return sorted_numbers
 if __name__ == "__main__":
-    print(NumberListGenerator.generate_almost_sorted_numbers(80))
+    teste = NumberListGenerator.generate_reversed_numbers(40)
+    print(teste)
+    print(insertion_sort(teste))
