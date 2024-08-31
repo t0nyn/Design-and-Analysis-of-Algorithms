@@ -1,8 +1,8 @@
-def insertion_sort(vector: list)->list:
-    for i in range(1, len(vector)):
+def insertion_sort(arr: list)->list:
+    for i in range(1, len(arr)):
         for j in range(i-1, -1, -1):
-            if vector[j]>vector[j+1]:
-                vector[j], vector[j+1] = vector[j+1], vector[j]
+            if arr[j]>arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
             else:
                 break
-    return vector
+    return arr

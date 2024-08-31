@@ -1,6 +1,6 @@
-def bubble_sort(vector: list)->list:
-    for i in range(len(vector)-1):
-        for j in range(len(vector)-i-1):
-            if vector[j]>vector[j+1]:
-                vector[j], vector[j+1] = vector[j+1], vector[j]
-    return vector
+def bubble_sort(arr: list)->list:
+    for i in range(len(arr)-1):
+        for j in range(len(arr)-i-1):
+            if arr[j]>arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
