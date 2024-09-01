@@ -48,19 +48,22 @@ def process_results(initial:int, final:int, step:int):
 
 def print_results(results):
     for case in results.keys():
-        print(f'[[{case.replace('_', ' ').upper()}]]')
-        print('      n\t   Bubble\tInsertion\t    Merge\t     Heap\t    Quick\t Counting')
-        print('--------------------------------------------------------------------------------------------')
+        print(f'[[{case.replace('_', ' ').upper()}]]', end='\n\n')
+        line_format = '{:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}'
+        header = line_format.format('n','Bubble','Insertion','Merge','Heap','Quick','Counting')
+        print(header)
+        print('-' * len(header))
         for n_case in results[case]:
             print(
-                '%7d    %2.6f\t%2.6f\t%2.6f\t%2.6f\t%2.6f\t%2.6f' %
-                (n_case,
-                results[case][n_case]['bubble_sort'],
-                results[case][n_case]['insertion_sort'],
-                results[case][n_case]['merge_sort'],
-                results[case][n_case]['heap_sort'],
-                results[case][n_case]['quick_sort'],
-                results[case][n_case]['counting_sort'])
+                    line_format .format(
+                    '%d' % n_case,
+                    '%2.6f' % results[case][n_case]['bubble_sort'],
+                    '%2.6f' % results[case][n_case]['insertion_sort'],
+                    '%2.6f' % results[case][n_case]['merge_sort'],
+                    '%2.6f' % results[case][n_case]['heap_sort'],
+                    '%2.6f' % results[case][n_case]['quick_sort'],
+                    '%2.6f' % results[case][n_case]['counting_sort']
+                )
             )
         print('\n\n')
             
