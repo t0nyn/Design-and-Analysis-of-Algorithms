@@ -1,6 +1,6 @@
 import unittest
 from mock.generator import NumberListGenerator
-from bubble_sort import bubble_sort
+from algorithms.bubble_sort import bubble_sort
 
 class TestBubbleSort(unittest.TestCase):
 

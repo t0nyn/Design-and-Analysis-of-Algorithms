@@ -1,6 +1,6 @@
 import unittest
 from mock.generator import NumberListGenerator
-from quick_sort import quick_sort
+from algorithms.quick_sort import quick_sort
 
 class TestQuickSort(unittest.TestCase):
 

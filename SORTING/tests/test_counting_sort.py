@@ -1,6 +1,6 @@
 import unittest
 from mock.generator import NumberListGenerator
-from counting_sort import counting_sort
+from algorithms.counting_sort import counting_sort
 
 class TestCountingSort(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import unittest
 from mock.generator import NumberListGenerator
-from insertion_sort import insertion_sort
+from algorithms.insertion_sort import insertion_sort
 
 class TestInsertionSort(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import unittest
 from mock.generator import NumberListGenerator
-from heap_sort import heap_sort
+from algorithms.heap_sort import heap_sort
 
 class TestHeapSort(unittest.TestCase):
 

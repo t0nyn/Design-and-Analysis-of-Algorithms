@@ -1,6 +1,6 @@
 import unittest
 from mock.generator import NumberListGenerator
-from merge_sort import merge_sort
+from algorithms.merge_sort import merge_sort
 
 class TestMergeSort(unittest.TestCase):
 
