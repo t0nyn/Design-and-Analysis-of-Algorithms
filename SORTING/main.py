@@ -37,12 +37,12 @@ def process_results(initial:int, final:int, step:int):
     cases = generate_cases(initial, final, step)
     results = {}
     for case in cases.keys():
+        if case not in results.keys():
+            results[case] = {}
         for n_case in cases[case].keys():
-            for algorithm in sorting_algorithms:
-                if case not in results.keys():
-                    results[case] = {}
-                if n_case not in results[case].keys():
+            if n_case not in results[case].keys():
                     results[case][n_case] = {}
+            for algorithm in sorting_algorithms:
                 results[case][n_case][algorithm.__name__] = measure_time(cases[case][n_case], algorithm)
     return results
 
