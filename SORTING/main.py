@@ -21,7 +21,7 @@ def generate_cases(initial:int, final:int, step:int):
         'random'       : {n:NumberListGenerator.generate_random_numbers(n, 10)          for n in range(initial, final, step)},
         'sorted'       : {n:[NumberListGenerator.generate_sorted_numbers(n)]            for n in range(initial, final, step)},
         'reversed'     : {n:[NumberListGenerator.generate_reversed_numbers(n)]          for n in range(initial, final, step)},
-        'almost_sorted': {n:[NumberListGenerator.generate_almost_sorted_numbers(n)]     for n in range(initial, final, step)},
+        'nearly_sorted': {n:[NumberListGenerator.generate_nearly_sorted_numbers(n)]     for n in range(initial, final, step)},
     }
 
 def measure_time(list_of_arr:list[list[int]], func) -> int:

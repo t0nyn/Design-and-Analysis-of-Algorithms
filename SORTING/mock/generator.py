@@ -17,7 +17,7 @@ class NumberListGenerator:
         return list(range(n, 0, -1))
 
     @staticmethod
-    def generate_almost_sorted_numbers(n: int)->list:
+    def generate_nearly_sorted_numbers(n: int)->list:
         sorted_numbers = NumberListGenerator.generate_sorted_numbers(n)
         for i in range(n//20):
             choice1 = sorted_numbers.index(random.choice(sorted_numbers))

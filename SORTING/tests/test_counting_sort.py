@@ -22,8 +22,8 @@ class TestCountingSort(unittest.TestCase):
         output = counting_sort(numbers)
         self.assertEqual(output, expected)
     
-    def test_almost_sorted(self):
-        numbers = NumberListGenerator.generate_almost_sorted_numbers(100)
+    def test_nearly_sorted(self):
+        numbers = NumberListGenerator.generate_nearly_sorted_numbers(100)
         expected = sorted(numbers)
         output = counting_sort(numbers)
         self.assertEqual(output, expected)
