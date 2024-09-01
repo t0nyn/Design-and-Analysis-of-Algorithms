@@ -47,15 +47,15 @@ def process_results(initial:int, final:int, step:int):
     return results
 
 def print_results(results):
+    text = ''
     for case in results.keys():
-        print(f'[[{case.replace('_', ' ').upper()}]]', end='\n\n')
-        line_format = '{:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}'
+        text += f'[[{case.replace('_', ' ').upper()}]]\n\n'
+        line_format = '{:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}\n'
         header = line_format.format('n','Bubble','Insertion','Merge','Heap','Quick','Counting')
-        print(header)
-        print('-' * len(header))
+        text += header
+        text += '-' * len(header) + '\n'
         for n_case in results[case]:
-            print(
-                    line_format .format(
+            text += line_format .format(
                     '%d' % n_case,
                     '%2.6f' % results[case][n_case]['bubble_sort'],
                     '%2.6f' % results[case][n_case]['insertion_sort'],
@@ -64,8 +64,10 @@ def print_results(results):
                     '%2.6f' % results[case][n_case]['quick_sort'],
                     '%2.6f' % results[case][n_case]['counting_sort']
                 )
-            )
-        print('\n\n')
+        text += '\n\n' 
+    with open('./result_tables.txt', 'w') as file:
+        file.write(text)
+    print(text)
             
 if __name__ == "__main__":
     results = process_results(100, 1000, 100)
