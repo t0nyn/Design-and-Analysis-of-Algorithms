@@ -1,8 +1,4 @@
 import random
-from bubble_sort import bubble_sort
-from insertion_sort import insertion_sort
-from quick_sort import quick_sort
-from counting_sort import counting_sort
 
 class NumberListGenerator:
     LOWER_RANDOM_BOUND = 0
@@ -29,8 +25,3 @@ class NumberListGenerator:
             sorted_numbers[choice1], sorted_numbers[choice2] = sorted_numbers[choice2], sorted_numbers[choice1]
 
         return sorted_numbers
-if __name__ == "__main__":
-    teste = NumberListGenerator.generate_reversed_numbers(10)
-    print(teste)
-    teste2 = counting_sort(teste)
-    print(teste2)
