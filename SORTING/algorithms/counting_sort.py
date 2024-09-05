@@ -1,5 +1,5 @@
 def counting_sort(arr: list)->list:
-    count_arr = [0] * (max(arr) +1)
+    count_arr = [0] * (max(arr)+1)
     final_arr = [0] * len(arr)
 
     for number in arr:
