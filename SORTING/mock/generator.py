@@ -1,11 +1,15 @@
 import random
+from datetime import datetime
+
+# random.seed(datetime.now().timestamp())
+# random.seed(1999)
 
 class NumberListGenerator:
     LOWER_RANDOM_BOUND = 0
     
     @staticmethod
     def generate_random_numbers(n: int, rpt: int)->list:
-        UPPER_RANDOM_BOUND = n**2
+        UPPER_RANDOM_BOUND = n*2
         return [[random.randint(NumberListGenerator.LOWER_RANDOM_BOUND, UPPER_RANDOM_BOUND) for number in range(n)]for _ in range(rpt)]
 
     @staticmethod

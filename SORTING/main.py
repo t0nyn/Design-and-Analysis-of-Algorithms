@@ -10,7 +10,6 @@ import json
 import matplotlib.pyplot as plt
 import sys
 
-
 sorting_algorithms = [
     bubble_sort,
     insertion_sort,
@@ -103,6 +102,6 @@ def plot_all_graphics(results: dict)->None:
         plt.show()
 
 if __name__ == "__main__":
-    results = process_results(10000, 50000, 10000)
+    results = process_results(100, 1000, 100)
     print_and_save_results(results)
     plot_all_graphics(results)
