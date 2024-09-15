@@ -76,9 +76,9 @@ def print_and_save_results(results: dict)->None:
                     '%2.6f' % results[case][n_case]['counting_sort']
                 )
         text += '\n\n' 
-    with open('./results/result_tables.txt', 'w') as file:
+    with open('result_tables.txt', 'w') as file:
         file.write(text)
-    with open('./result_tables.json', 'w') as file:
+    with open('result_tables.json', 'w') as file:
         json.dump(results, file)
     print(text)
 
@@ -114,8 +114,6 @@ def plot_algorithms(results: dict, algorithms: list)->None:
 
 if __name__ == "__main__":
     results = process_results(500, 8000, 500)
-    # with open('result_tables.json', 'r') as file:
-    #     results = json.loads(file.read()) 
     print_and_save_results(results)
     plot_algorithms(results, ['bubble_sort','insertion_sort'])
     plot_algorithms(results, [ 'counting_sort', 'merge_sort','quick_sort','heap_sort'])
