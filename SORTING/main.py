@@ -75,6 +75,38 @@ def print_and_save_results(results: dict)->None:
         json.dump(results, file)
     print(text)
 
+def normalize_data(results: dict)->tuple:
+    for test_type, test_size in results.items():
+        n_values = []
+        algorithm_time = {}
+        
+        for n, sorting_algorithms in test_size.items():
+            n_values.append(n)
+            for sorting_algorithm, timestamp in sorting_algorithms.items():
+                if sorting_algorithm not in algorithm_time:
+                    algorithm_time[f'{sorting_algorithm}'] = []
+                algorithm_time[f'{sorting_algorithm}'].append(timestamp)
+        
+    return algorithm_time, n_values
+    
+def plot_algorithms(results: dict, experiment_size: list, alg_allowed: list)->None:
+    i = 0
+
+    plt.figure(i, figsize=(10,6))
+            
+    for algorithm, timestamp in results.items():
+        if algorithm in alg_allowed:
+            plt.plot(experiment_size, timestamp, label=f'{algorithm}')
+        i += 1
+
+    plt.xlabel('n')
+    plt.ylabel('time')
+    plt.title(f'{test_type}')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.legend()
+    plt.show()
+
 def plot_all_graphics(results: dict)->None:
     i = 0
     for test_type, test_size in results.items():
