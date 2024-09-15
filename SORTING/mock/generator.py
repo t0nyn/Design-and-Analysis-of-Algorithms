@@ -1,19 +1,15 @@
 import random
 from datetime import datetime
-
-# random.seed(datetime.now().timestamp())
-# random.seed(1999)
-
-
-random.seed(42)
+from numpy import array
 
 class NumberListGenerator:
     LOWER_RANDOM_BOUND = 0
     
     @staticmethod
     def generate_random_numbers(n: int, rpt: int)->list:
-        UPPER_RANDOM_BOUND = n*2
-        return [[random.randint(NumberListGenerator.LOWER_RANDOM_BOUND, UPPER_RANDOM_BOUND) for number in range(n)]for _ in range(rpt)]
+        UPPER_RANDOM_BOUND = n
+        random.seed(42)
+        return [[random.randint(NumberListGenerator.LOWER_RANDOM_BOUND, UPPER_RANDOM_BOUND) for number in range(n)] for _ in range(rpt)]
 
     @staticmethod
     def generate_sorted_numbers(n: int)->list:
@@ -25,6 +21,7 @@ class NumberListGenerator:
 
     @staticmethod
     def generate_nearly_sorted_numbers(n: int)->list:
+        random.seed(42)
         sorted_numbers = NumberListGenerator.generate_sorted_numbers(n)
         for i in range(n//20):
             choice1 = random.randint(0, n-1)
