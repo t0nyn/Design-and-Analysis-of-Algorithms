@@ -18,10 +18,14 @@
 #         recursive_quick_sort(arr, pivot_index+1, high)
 #     return arr
 
+import random
+random.seed(42)
+
+
 def partition(array, low, high):
 
     # choose the rightmost element as pivot
-    pivot = array[high]
+    pivot = random.randint(low, high)
 
     # pointer for greater element
     i = low - 1

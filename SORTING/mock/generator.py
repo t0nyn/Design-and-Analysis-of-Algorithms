@@ -1,5 +1,8 @@
 import random
 
+
+random.seed(42)
+
 class NumberListGenerator:
     LOWER_RANDOM_BOUND = 0
     
@@ -20,8 +23,8 @@ class NumberListGenerator:
     def generate_nearly_sorted_numbers(n: int)->list:
         sorted_numbers = NumberListGenerator.generate_sorted_numbers(n)
         for i in range(n//20):
-            choice1 = sorted_numbers.index(random.choice(sorted_numbers))
-            choice2 = sorted_numbers.index(random.choice(sorted_numbers))
+            choice1 = random.randint(0, n-1)
+            choice2 = random.randint(0, n-1)
             sorted_numbers[choice1], sorted_numbers[choice2] = sorted_numbers[choice2], sorted_numbers[choice1]
 
         return sorted_numbers
