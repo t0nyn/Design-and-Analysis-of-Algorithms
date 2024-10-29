@@ -1,5 +1,7 @@
 # Top-Down Approach
+from functools import cache, lru_cache
 
+# @cache
 def memoized_cut_log(prices: list, n: int, memo: dict = None)->int:
     if memo == None:
         memo = {}
