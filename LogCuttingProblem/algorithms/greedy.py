@@ -1,4 +1,5 @@
 from functools import cache, lru_cache
+# @cache
 # def greedy_cut_log(prices: list, n: int)->int:
 #     if n==0:
 #         return 0
@@ -10,18 +11,13 @@ from functools import cache, lru_cache
 
 #     return max_price
 
-@cache
-def greedy_cut_log(prices: list, n: int) -> int:
-    if n == 0:
-        return 0
+def greedy_cut_log(prices: list, n: int)->int:
+    max_revenue = [0] * (n + 1)
 
-    max_price = float('-inf')
+    for length in range(1, n + 1):
+        max_price = float('-inf')
+        for i in range(length):
+            max_price = max(max_price, prices[i] + max_revenue[length - i - 1])
+        max_revenue[length] = max_price
 
-    for i in range(n):
-        # Calculate the current price by cutting the rod into pieces
-        current_price = prices[i] + greedy_cut_log(prices, n - i - 1)
-        print(n-i-1)
-        # Update max_price if current_price is higher
-        max_price = max(max_price, current_price)
-
-    return max_price
+    return max_revenue[n]

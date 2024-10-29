@@ -3,7 +3,11 @@ from time import time
 from mock.generator import LogPriceGenerator
 from algorithms.dynamic_programming import memoized_cut_log
 from algorithms.greedy import greedy_cut_log
+import matplotlib.pyplot as plt
 import sys
+
+ALGORITHMS = ['top_down', 'greedy']
+GRAPHIC_TYPES = ['price', 'time']
 
 def generate_cases(initial: int, final: int, step:int)->dict:
     return {
@@ -18,38 +22,39 @@ def measure_time(prices: list, func)->dict:
             'price': max_price}
 
 def process_results(initial: int, final: int, step: int)->dict:
-    sys.setrecursionlimit(10000)
-    algorithms = ['Top_Down', 'Greedy']
+    # A FUNCAO ABAIXO PARA AUMENTAR A RECURSIVIDADE DO SISTEMA NAO TA FUNCIONANDO
+    # ME AJUDA AMIGO
+    sys.setrecursionlimit(final*2)
     log_size_price = generate_cases(initial, final, step)
     results = {}
     for log_size in log_size_price.keys():
         if log_size not in results.keys():
             results[log_size] = {}
-        for algorithm in algorithms:
+        for algorithm in ALGORITHMS:
             if algorithm not in results[log_size].keys():
                 results[log_size][algorithm] = -1
-            if algorithm == 'Top_Down':
+            if algorithm == 'top_down':
                 results[log_size][algorithm] = measure_time(log_size_price[log_size], memoized_cut_log)
-            if algorithm == 'Greedy':
+            if algorithm == 'greedy':
                 results[log_size][algorithm] = measure_time(log_size_price[log_size], greedy_cut_log)
-        # results[log_size]['%'] = 
+        results[log_size]['perc'] = (results[log_size]['greedy']['price'] * 100) / results[log_size]['top_down']['price']
     return results
 
 def save_and_print_results(results: dict)->None:
     text = ''
     line_format = '{:>9}     {:>9}     {:>9}     {:>9}     {:>9}     {:>9}\n'
-    header = line_format.format('n','vDp','tDp','vGreedy','tGreedy','%',)
+    header = line_format.format('n','vDp','tDp','vgreedy','tgreedy','%',)
     text += header
     text += '-' * len(header) + '\n'
 
     for log_size in results.keys():
         text += line_format.format(
             '%d' % int(log_size),
-            '%6d' % results[log_size]['Top_Down']['price'],
-            '%2.6f' % results[log_size]['Top_Down']['time'],
-            '%6d' % results[log_size]['Greedy']['price'],
-            '%6d' % results[log_size]['Greedy']['time'],
-            '%6d' % 10,
+            '%6d' % results[log_size]['top_down']['price'],
+            '%2.6f' % results[log_size]['top_down']['time'],
+            '%6d' % results[log_size]['greedy']['price'],
+            '%2.6f' % results[log_size]['greedy']['time'],
+            '%2.2f' % results[log_size]['perc'],
         )
         text += '\n\n'
     with open('results_tables.txt', 'w') as file:
@@ -58,6 +63,37 @@ def save_and_print_results(results: dict)->None:
         json.dump(results, file)
     print(text)
 
+def get_result_axis(results: dict, graphic_type: str, algorithm: str)->tuple:
+    n_values = results.keys()
+    y_values = []
+
+    for value in results.values():
+        y_values.append(value[algorithm][graphic_type])
+    
+    return n_values, y_values
+
+def plot_graphics(results: dict)->None:
+    for graphic_type in GRAPHIC_TYPES:
+        i = 0
+        plt.figure(i, figsize=(10,6))
+
+        for algorithm in ALGORITHMS:
+            x_axis, y_axis = get_result_axis(results, graphic_type, algorithm)
+            plt.plot(x_axis, y_axis, label=f'{algorithm}')
+        
+        plt.xlabel('n')
+        plt.ylabel(graphic_type)
+        plt.title('Dynamic Programming vs greedy')
+        plt.grid(True)
+        plt.tight_layout()
+        plt.legend()
+        plt.savefig(f'./results/{graphic_type}.png')
+        plt.show()
+        i+=1
+
+        
+
 if __name__ == '__main__':
-    results = process_results(500, 8000, 500)
+    results = process_results(500, 10000, 500)
     save_and_print_results(results)
+    plot_graphics(results)
