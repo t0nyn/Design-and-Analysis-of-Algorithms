@@ -3,7 +3,7 @@ from time import time
 from mock.generator import LogPriceGenerator
 from algorithms.dynamic_programming import memoized_cut_log
 from algorithms.greedy import greedy_cut_log
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # type: ignore
 import sys
 
 ALGORITHMS = ['top_down', 'greedy']
