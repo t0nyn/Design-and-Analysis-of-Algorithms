@@ -1,32 +1,32 @@
 from functools import cache, lru_cache
 
 
-# def greedy_cut_log(prices: list, n: int):
-#     max_profit = 0
+# def greedy_cut_log(prices: list, n: int) -> int:
+#     max_revenue = [0] * (n + 1)
 
-#     while n > 0:
-#         best_price_index = -1
-#         best_price_per_unit = 0
+#     for length in range(1, n + 1):
+#         max_price = float("-inf")
+#         for i in range(length):
+#             max_price = max(max_price, prices[i] + max_revenue[length - i - 1])
+#         max_revenue[length] = max_price
 
-#         for i in range(min(len(prices), n)):
-#             price_per_unit = prices[i] / (i + 1)
-#             if price_per_unit > best_price_per_unit:
-#                 best_price_per_unit = price_per_unit
-#                 best_price_index = i
-
-#         max_profit += prices[best_price_index]
-#         n -= best_price_index + 1
-
-#     return max_profit
+#     return max_revenue[n]
 
 
 def greedy_cut_log(prices: list, n: int) -> int:
-    max_revenue = [0] * (n + 1)
+    max_revenue = 0
 
-    for length in range(1, n + 1):
-        max_price = float("-inf")
-        for i in range(length):
-            max_price = max(max_price, prices[i] + max_revenue[length - i - 1])
-        max_revenue[length] = max_price
+    while n > 0:
+        best_piece_length = 0
+        best_price_per_unit = 0
 
-    return max_revenue[n]
+        for i in range(1, min(len(prices), n) + 1):
+            price_per_unit = prices[i - 1] / i
+            if price_per_unit > best_price_per_unit:
+                best_price_per_unit = price_per_unit
+                best_piece_length = i
+
+        max_revenue += prices[best_piece_length - 1]
+        n -= best_piece_length
+
+    return max_revenue
