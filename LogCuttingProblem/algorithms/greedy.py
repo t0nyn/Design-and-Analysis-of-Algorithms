@@ -1,20 +1,5 @@
-from functools import cache, lru_cache
-
-
-# def greedy_cut_log(prices: list, n: int) -> int:
-#     max_revenue = [0] * (n + 1)
-
-#     for length in range(1, n + 1):
-#         max_price = float("-inf")
-#         for i in range(length):
-#             max_price = max(max_price, prices[i] + max_revenue[length - i - 1])
-#         max_revenue[length] = max_price
-
-#     return max_revenue[n]
-
-
 def greedy_cut_log(prices: list, n: int) -> int:
-    max_revenue = 0
+    max_price = 0
 
     while n > 0:
         best_piece_length = 0
@@ -26,7 +11,7 @@ def greedy_cut_log(prices: list, n: int) -> int:
                 best_price_per_unit = price_per_unit
                 best_piece_length = i
 
-        max_revenue += prices[best_piece_length - 1]
+        max_price += prices[best_piece_length - 1]
         n -= best_piece_length
 
-    return max_revenue
+    return max_price
