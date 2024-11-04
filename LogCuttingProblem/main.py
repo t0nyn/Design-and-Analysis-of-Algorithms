@@ -1,3 +1,10 @@
+# ALUNOS: 
+#     ANTONIO AUGUSTO FERNANDES OLIVEIRA NANTES
+#     RAFAEL DE AZEVEDO BORGES DA SILVA
+
+# PROFESSOR:
+#     CARLOS HENRIQUE AGUENA HIGA
+
 import json
 from time import time
 from mock.generator import LogPriceGenerator
